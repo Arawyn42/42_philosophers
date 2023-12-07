@@ -6,14 +6,14 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 22:10:48 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/05 22:23:03 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/07 19:40:04 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
 /***************** Print an error message on the error output *****************/
-static void	print_error(char *msg)
+int	print_error(char *msg)
 {
 	int	i;
 
@@ -23,6 +23,7 @@ static void	print_error(char *msg)
 		write(STDERR_FILENO, &msg[i], 1);
 		i++;
 	}
+	return (0);
 }
 
 /************ Prints an error message in case of invalid arguments ************/
@@ -46,6 +47,7 @@ int	check_args(int ac, char **av)
 	i = 1;
 	while (av[i])
 	{
+		j = 0;
 		while (av[i][j])
 		{
 			if (av[i][j] < '0' || av[i][j] > '9')

@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 19:48:20 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/05 23:18:38 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/07 22:32:13 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,32 @@ typedef struct s_p
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				wanted_meals;
-	int				num_of_threads;
+	int				thread_id;
 	int				is_a_philo_dead;
 	long long		start_time;
-	pthread_t		thread;
+	pthread_t		check;
 	pthread_mutex_t	*fork;
-	pthread_mutex_t	act;
+	pthread_mutex_t	printing;
 	t_philo			*philo;
 }				t_p;
 
 /*********************************** UTILS ************************************/
+int			print_error(char *msg);
 int			p_atoi(const char *s);
 long long	get_time(void);
 long long	get_time_since(long long time);
-void		wait_time(long long time);
+void		wait_time(t_p *p, long long time);
+void		free_all(t_p *p);
 
+/************************************ INIT ************************************/
 int			check_args(int ac, char **av);
 int			init(int ac, char **av, t_p *p);
+int			init_threads(t_p *p);
+
+/*********************************** TASKS ************************************/
+int			p_eat(t_p *p, int i);
+int			p_sleep(t_p *p, int i);
+int			p_think(t_p *p, int i);
+int			p_is_dead(t_p *p, int *i);
 
 #endif
