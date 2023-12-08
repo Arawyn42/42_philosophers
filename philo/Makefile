@@ -6,7 +6,7 @@
 #    By: drenassi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 20:15:28 by drenassi          #+#    #+#              #
-#    Updated: 2023/12/07 19:35:47 by drenassi         ###   ########.fr        #
+#    Updated: 2023/12/08 15:03:10 by drenassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@
 
 NAME	= philo
 CC 		= cc
-CFLAGS	= -Wall -Werror -Wextra -g3
+CFLAGS	= -Wall -Werror -Wextra -g3 -pthread
 AUTHOR	= drenassi
 DATE	= 05/12/2023
 NOVISU 	= 0 # 1 = no progress bar usefull when tty is not available
@@ -29,8 +29,6 @@ NOVISU 	= 0 # 1 = no progress bar usefull when tty is not available
 FILE_EXTENSION	= .c
 
 SRCS_PATH		= ./src
-
-MLX_PATH		= ./mlx
 
 INCLUDE_PATH	= ./includes
 
