@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 22:10:48 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/09 18:59:04 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/09 19:18:47 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	print_error(char *msg)
 }
 
 /************ Print an error message in case of invalid arguments *************/
-static int	print_args_error()
+static int	print_args_error(void)
 {
 	print_error("Error: Invalid arguments.\n\nUsage: ./philo ");
 	print_error("number_of_philosophers time_to_die time_to_eat time_to");

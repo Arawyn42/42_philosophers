@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:56:44 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/09 19:01:18 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/09 19:17:48 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	check_dead(t_data *data, t_philo *philo)
 
 	i = 0;
 	done_philos = 0;
-	while(done_philos < data->num_of_philos)
+	while (done_philos < data->num_of_philos)
 	{
 		usleep(50);
 		if (i >= data->num_of_philos)
@@ -68,7 +68,7 @@ static void	*rout(void *arg)
 	{
 		pthread_mutex_lock(&philo->data->is_dead);
 		if (philo->data->is_a_philo_dead)
-			return (pthread_mutex_unlock(&philo->data->is_dead), NULL) ;
+			return (pthread_mutex_unlock(&philo->data->is_dead), NULL);
 		pthread_mutex_unlock(&philo->data->is_dead);
 		if (!p_eat(philo))
 			break ;
@@ -76,7 +76,7 @@ static void	*rout(void *arg)
 		{
 			pthread_mutex_lock(&philo->data->is_dead);
 			if (philo->data->is_a_philo_dead)
-				return (pthread_mutex_unlock(&philo->data->is_dead), NULL) ;
+				return (pthread_mutex_unlock(&philo->data->is_dead), NULL);
 			pthread_mutex_unlock(&philo->data->is_dead);
 			p_sleep(philo);
 			print_task(philo, "is thinking");

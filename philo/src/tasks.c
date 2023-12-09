@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:02:36 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/09 19:03:06 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/09 19:18:28 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	print_task(t_philo *philo, char *msg)
 {
 	t_data			*data;
-	long long	time;
+	long long		time;
 
 	data = philo->data;
 	pthread_mutex_lock(&data->printing);
@@ -67,8 +67,8 @@ static int	p_eat2(t_philo *philo, t_data *data, int left, int right)
 int	p_eat(t_philo *philo)
 {
 	t_data	*data;
-	int	left;
-	int	right;
+	int		left;
+	int		right;
 
 	data = philo->data;
 	left = philo->left_fork;

@@ -6,12 +6,12 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 19:48:20 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/09 18:02:13 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/09 19:16:48 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
-# define PHILOSOPHERS_H
+#ifndef PHILO_H
+# define PHILO_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -19,8 +19,6 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <string.h>
-
-struct s_p;
 
 typedef struct s_data
 {
