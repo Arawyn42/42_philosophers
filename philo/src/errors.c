@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 22:10:48 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/07 19:40:04 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/09 18:59:04 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	print_error(char *msg)
 	return (0);
 }
 
-/************ Prints an error message in case of invalid arguments ************/
+/************ Print an error message in case of invalid arguments *************/
 static int	print_args_error()
 {
 	print_error("Error: Invalid arguments.\n\nUsage: ./philo ");
@@ -36,7 +36,7 @@ static int	print_args_error()
 	return (0);
 }
 
-/** Checks if there is a correct number of arguments and if they are valids ***/
+/*** Check if there is a correct number of arguments and if they are valids ***/
 int	check_args(int ac, char **av)
 {
 	int	i;

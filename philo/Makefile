@@ -6,7 +6,7 @@
 #    By: drenassi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 20:15:28 by drenassi          #+#    #+#              #
-#    Updated: 2023/12/07 19:35:47 by drenassi         ###   ########.fr        #
+#    Updated: 2023/12/09 17:53:22 by drenassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ MLX_PATH		= ./mlx
 
 INCLUDE_PATH	= ./includes
 
-SRCS			= utils.c errors.c init.c threads.c tasks.c
+SRCS			= utils.c errors.c init.c routine.c tasks.c
 
 MAIN			= main.c
 
