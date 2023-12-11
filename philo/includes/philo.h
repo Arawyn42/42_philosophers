@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 19:48:20 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/09 19:16:48 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/11 18:59:49 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct s_data
 	int				wanted_meals;
 	int				is_a_philo_dead;
 	long long		start_time;
-	pthread_t		check;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	printing;
 	pthread_mutex_t	eating;

@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:30:04 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/09 18:58:30 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/11 18:56:43 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,56 @@ void	init_philos(t_data *data, t_philo *philo)
 }
 
 /**************** Initialize eating, time, and is_dead mutexes ****************/
-static int	init_mutex2(t_data *data)
+static int	init_mutex3(t_data *data)
 {
-	if (pthread_mutex_init(&data->eating, NULL))
-	{
-		free(data->fork);
-		return (print_error("Error: init_mutex: pthread_mutex_init.\n"));
-	}
+	int	i;
+
+	i = -1;
 	if (pthread_mutex_init(&data->time, NULL))
 	{
 		free(data->fork);
+		while (++i < data->num_of_philos)
+			pthread_mutex_destroy(&data->fork[i]);
+		pthread_mutex_destroy(&data->printing);
+		pthread_mutex_destroy(&data->eating);
 		return (print_error("Error: init_mutex: pthread_mutex_init.\n"));
 	}
 	if (pthread_mutex_init(&data->is_dead, NULL))
 	{
 		free(data->fork);
+		while (++i < data->num_of_philos)
+			pthread_mutex_destroy(&data->fork[i]);
+		pthread_mutex_destroy(&data->printing);
+		pthread_mutex_destroy(&data->eating);
+		pthread_mutex_destroy(&data->time);
 		return (print_error("Error: init_mutex: pthread_mutex_init.\n"));
 	}
+	return (1);
+}
+
+/**************** Initialize eating, time, and is_dead mutexes ****************/
+static int	init_mutex2(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	if (pthread_mutex_init(&data->printing, NULL))
+	{
+		free(data->fork);
+		while (++i < data->num_of_philos)
+			pthread_mutex_destroy(&data->fork[i]);
+		return (print_error("Error: init_mutex: pthread_mutex_init.\n"));
+	}
+	if (pthread_mutex_init(&data->eating, NULL))
+	{
+		free(data->fork);
+		while (++i < data->num_of_philos)
+			pthread_mutex_destroy(&data->fork[i]);
+		pthread_mutex_destroy(&data->printing);
+		return (print_error("Error: init_mutex: pthread_mutex_init.\n"));
+	}
+	if (!init_mutex3(data))
+		return (0);
 	return (1);
 }
 
@@ -82,14 +115,11 @@ int	init_mutex(t_data *data)
 		if (pthread_mutex_init(&data->fork[i], NULL))
 		{
 			free(data->fork);
+			while (--i >= 0)
+				pthread_mutex_destroy(&data->fork[i]);
 			return (print_error("Error: init_mutex pthread_mutex_init.\n"));
 		}
 		i++;
-	}
-	if (pthread_mutex_init(&data->printing, NULL))
-	{
-		free(data->fork);
-		return (print_error("Error: init_mutex: pthread_mutex_init.\n"));
 	}
 	if (!init_mutex2(data))
 		return (0);
