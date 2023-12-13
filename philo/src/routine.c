@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:56:44 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/09 19:17:48 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/12 23:08:38 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static int	check_dead_2(t_data *data, t_philo *philo, int i)
 		pthread_mutex_lock(&data->is_dead);
 		data->is_a_philo_dead++;
 		pthread_mutex_unlock(&data->is_dead);
-		pthread_mutex_unlock(&data->eating);
 		return (1);
 	}
 	return (0);
@@ -45,15 +44,15 @@ void	check_dead(t_data *data, t_philo *philo)
 		usleep(50);
 		if (i >= data->num_of_philos)
 			i = 0;
-		pthread_mutex_lock(&data->eating);
 		if (check_dead_2(data, philo, i))
 			break ;
+		pthread_mutex_lock(&data->ate_enough);
 		if (philo[i].ate_enough)
 		{
 			done_philos++;
 			philo[i].ate_enough = 0;
 		}
-		pthread_mutex_unlock(&data->eating);
+		pthread_mutex_unlock(&data->ate_enough);
 		i++;
 	}
 }
@@ -64,13 +63,15 @@ static void	*rout(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
+	if (philo->id % 2 == 0)
+		usleep(25000);
 	while (philo->meals != philo->data->wanted_meals)
 	{
 		pthread_mutex_lock(&philo->data->is_dead);
 		if (philo->data->is_a_philo_dead)
 			return (pthread_mutex_unlock(&philo->data->is_dead), NULL);
 		pthread_mutex_unlock(&philo->data->is_dead);
-		if (!p_eat(philo))
+		if (!p_eat(philo, philo->data))
 			break ;
 		if (philo->data->wanted_meals != philo->meals)
 		{
@@ -82,9 +83,9 @@ static void	*rout(void *arg)
 			print_task(philo, "is thinking");
 		}
 	}
-	pthread_mutex_lock(&philo->data->eating);
+	pthread_mutex_lock(&philo->data->ate_enough);
 	philo->ate_enough = 1;
-	pthread_mutex_unlock(&philo->data->eating);
+	pthread_mutex_unlock(&philo->data->ate_enough);
 	return (NULL);
 }
 
@@ -98,7 +99,7 @@ int	init_threads(t_data *data, t_philo *philo)
 	{
 		if (pthread_create(&philo[i].thread, NULL, &rout, &philo[i]))
 			return (0);
-		usleep(50);
+		usleep(10);
 		i++;
 	}
 	check_dead(data, philo);
@@ -107,7 +108,7 @@ int	init_threads(t_data *data, t_philo *philo)
 	{
 		if (pthread_join(philo[i].thread, NULL))
 			return (0);
-		usleep(50);
+		usleep(10);
 		i++;
 	}
 	return (1);

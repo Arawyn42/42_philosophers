@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:10:39 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/09 19:04:05 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/12 21:41:20 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ void	wait_time(t_data *data, long long time)
 	int			is_dead;
 
 	start_time = get_time();
+	pthread_mutex_lock(&data->is_dead);
 	is_dead = data->is_a_philo_dead;
+	pthread_mutex_unlock(&data->is_dead);
 	while (!is_dead && get_time() - start_time < time)
 	{
 		pthread_mutex_lock(&data->is_dead);
@@ -84,7 +86,7 @@ void	destroy_mutex(t_data *data)
 		i++;
 	}
 	pthread_mutex_destroy(&data->printing);
-	pthread_mutex_destroy(&data->eating);
+	pthread_mutex_destroy(&data->ate_enough);
 	pthread_mutex_destroy(&data->time);
 	pthread_mutex_destroy(&data->is_dead);
 	free(data->fork);

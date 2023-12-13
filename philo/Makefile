@@ -6,7 +6,7 @@
 #    By: drenassi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 20:15:28 by drenassi          #+#    #+#              #
-#    Updated: 2023/12/09 19:07:50 by drenassi         ###   ########.fr        #
+#    Updated: 2023/12/12 22:54:19 by drenassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SRCS_PATH		= ./src
 
 INCLUDE_PATH	= ./includes
 
-SRCS			= utils.c errors.c init.c routine.c tasks.c
+SRCS			= utils.c errors.c init.c routine.c tasks.c print_tasks.c
 
 MAIN			= main.c
 

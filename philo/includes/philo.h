@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 19:48:20 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/11 19:47:50 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/12 22:10:56 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_data
 	long long		start_time;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	printing;
-	pthread_mutex_t	eating;
+	pthread_mutex_t	ate_enough;
 	pthread_mutex_t	time;
 	pthread_mutex_t	is_dead;
 }				t_data;
@@ -42,8 +42,6 @@ typedef struct s_philo
 	int				meals;
 	long long		last_meal;
 	int				ate_enough;
-	int				left_fork;
-	int				right_fork;
 	pthread_t		thread;
 	t_data			*data;
 }				t_philo;
@@ -65,7 +63,7 @@ int			init_threads(t_data *data, t_philo *philo);
 
 /*********************************** TASKS ************************************/
 void		print_task(t_philo *philo, char *msg);
-int			p_eat(t_philo *philo);
+int			p_eat(t_philo *philo, t_data *data);
 void		p_sleep(t_philo *philo);
 void		check_dead(t_data *data, t_philo *philo);
 
