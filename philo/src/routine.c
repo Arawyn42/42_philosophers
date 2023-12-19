@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:56:44 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/12 23:08:38 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/19 23:53:10 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,14 @@ void	check_dead(t_data *data, t_philo *philo)
 	}
 }
 
+/********************* Routine for philos threads (part 2) ********************/
+static void	ate(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->data->ate_enough);
+	philo->ate_enough = 1;
+	pthread_mutex_unlock(&philo->data->ate_enough);
+}
+
 /************************* Routine for philos threads *************************/
 static void	*rout(void *arg)
 {
@@ -83,9 +91,7 @@ static void	*rout(void *arg)
 			print_task(philo, "is thinking");
 		}
 	}
-	pthread_mutex_lock(&philo->data->ate_enough);
-	philo->ate_enough = 1;
-	pthread_mutex_unlock(&philo->data->ate_enough);
+	ate(philo);
 	return (NULL);
 }
 

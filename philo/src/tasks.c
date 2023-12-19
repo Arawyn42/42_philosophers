@@ -6,12 +6,13 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:02:36 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/12 23:14:11 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/19 23:52:08 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
+/***************************** Eat task (part 3) ******************************/
 static int	p_eat3(t_philo *philo, t_data *data, int left, int right)
 {
 	if (philo->meals == data->wanted_meals)

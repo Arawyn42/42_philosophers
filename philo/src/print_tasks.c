@@ -6,12 +6,13 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 22:51:58 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/12 22:58:47 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/19 23:53:51 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
+/************************** Set color for each philo **************************/
 static void	set_color(t_philo *philo)
 {
 	if (philo->id % 7 == 1)
