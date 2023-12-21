@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:30:04 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/20 00:07:40 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/21 14:22:18 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,7 @@ void	init_processes(t_data *data, t_philo *philo)
 	{
 		philo[i].pid = fork();
 		if (!philo[i].pid)
-		{
 			routine(&philo[i]);
-			exit(EXIT_SUCCESS);
-		}
 		i++;
 		usleep(50);
 	}
