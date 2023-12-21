@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:30:04 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/21 18:58:49 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/21 20:17:07 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,6 @@ void	init_philos(t_data *data, t_philo *philo)
 
 void	init_semaphores(t_data *data)
 {
-	data->forks = NULL;
-	data->print = NULL;
-	data->death = NULL;
-	data->finished = NULL;
 	sem_unlink("/forks");
 	sem_unlink("/print");
 	sem_unlink("/death");

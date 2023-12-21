@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:10:39 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/20 00:05:04 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/21 20:00:30 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,11 @@ void	destroy_semaphores(t_data *data, t_philo *philo)
 		i++;
 	}
 	sem_close(data->forks);
+	sem_unlink("/forks");
 	sem_close(data->print);
+	sem_unlink("/print");
 	sem_close(data->death);
+	sem_unlink("/death");
 	sem_close(data->finished);
+	sem_unlink("/finished");
 }

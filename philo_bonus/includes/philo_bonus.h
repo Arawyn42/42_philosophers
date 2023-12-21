@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 19:48:20 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/20 00:13:25 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/21 20:06:28 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_philo
 	int				meals;
 	long long		last_meal;
 	pid_t			pid;
+	pthread_t		is_dead;
 	t_data			*data;
 }				t_philo;
 
