@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 22:51:58 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/19 23:53:51 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/21 20:24:51 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	set_color(t_philo *philo)
 		printf("\033[0;35m");
 	else if (philo->id % 7 == 6)
 		printf("\033[0;36m");
-	else if (philo->id % 7 == 7)
+	else if (philo->id % 7 == 0)
 		printf("\033[0;37m");
 }
 
@@ -50,6 +50,7 @@ void	print_task(t_philo *philo, char *msg)
 	pthread_mutex_unlock(&data->is_dead);
 	printf("%lld\t", time);
 	set_color(philo);
-	printf("%d %s\n\033[0m", philo->id, msg);
+	printf("%d %s", philo->id, msg);
+	printf("\033[0;37m\n\033[0m");
 	pthread_mutex_unlock(&data->printing);
 }
