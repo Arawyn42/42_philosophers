@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:30:04 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/21 14:22:18 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/21 18:58:49 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	init_semaphores(t_data *data)
 	data->forks = sem_open("/forks", O_CREAT, 0600, data->num_of_philos);
 	data->print = sem_open("/print", O_CREAT, 0600, 1);
 	data->death = sem_open("/death", O_CREAT, 0600, 1);
-	data->finished = sem_open("/finished", O_CREAT, 0600, 1);
+	data->finished = sem_open("/finished", O_CREAT, 0600, 0);
 }
 
 void	init_processes(t_data *data, t_philo *philo)

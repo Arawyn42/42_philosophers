@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:02:36 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/20 00:02:02 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/21 19:00:33 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	set_color(t_philo *philo)
 		printf("\033[0;35m");
 	else if (philo->id % 7 == 6)
 		printf("\033[0;36m");
-	else if (philo->id % 7 == 7)
+	else if (philo->id % 7 == 0)
 		printf("\033[0;37m");
 }
 
@@ -39,7 +39,7 @@ void	print_task(t_philo *philo, char *msg)
 	data = philo->data;
 	sem_wait(data->print);
 	time = get_time_from(data->start_time);
-	printf("%lld\t", time);
+	printf("\033[0;37m%lld\t", time);
 	set_color(philo);
 	printf("%d %s\n\033[0m", philo->id, msg);
 	sem_post(data->print);

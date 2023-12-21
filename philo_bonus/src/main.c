@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 20:04:13 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/20 00:03:38 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/21 18:58:44 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	main(int ac, char **av)
 	if (data.num_of_philos == 1)
 		return (only_one_philo(&data), free(philo), 0);
 	init_semaphores(&data);
-	sem_wait(data.finished);
 	init_processes(&data, philo);
 	sem_wait(data.finished);
 	destroy_semaphores(&data, philo);
