@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 19:48:20 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/21 20:06:28 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/23 02:23:11 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <fcntl.h>
 # include <sys/stat.h>
 # include <sys/types.h>
+# include <sys/wait.h>
 # include <signal.h>
 
 typedef struct s_data
@@ -37,6 +38,7 @@ typedef struct s_data
 	sem_t			*print;
 	sem_t			*death;
 	sem_t			*finished;
+	sem_t			*all_eat;
 }				t_data;
 
 typedef struct s_philo

@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 21:10:39 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/21 20:00:30 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/23 02:26:32 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,12 @@ void	wait_time(long long time)
 void	destroy_semaphores(t_data *data, t_philo *philo)
 {
 	int	i;
+	int	status;
 
 	i = 0;
 	while (i < data->num_of_philos)
 	{
-		kill(philo[i].pid, SIGKILL);
+		waitpid(philo[i].pid, &status, 0);
 		i++;
 	}
 	sem_close(data->forks);
@@ -82,6 +83,8 @@ void	destroy_semaphores(t_data *data, t_philo *philo)
 	sem_unlink("/print");
 	sem_close(data->death);
 	sem_unlink("/death");
+	sem_close(data->all_eat);
+	sem_unlink("/all_eat");
 	sem_close(data->finished);
 	sem_unlink("/finished");
 }

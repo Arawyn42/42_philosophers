@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:02:36 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/21 20:25:54 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/23 02:01:15 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,14 @@ void	print_task(t_philo *philo, char *msg)
 	data = philo->data;
 	sem_wait(data->print);
 	time = get_time_from(data->start_time);
-	printf("%lld\t", time);
-	set_color(philo);
-	printf("%d %s", philo->id, msg);
-	printf("\033[0;37m\n\033[0m");
+	if (data->wanted_meals == -1
+		|| (data->wanted_meals != -1 && philo->meals < data->wanted_meals))
+	{
+		printf("%lld\t", time);
+		set_color(philo);
+		printf("%d %s", philo->id, msg);
+		printf("\033[0;37m\n\033[0m");
+	}
 	sem_post(data->print);
 }
 

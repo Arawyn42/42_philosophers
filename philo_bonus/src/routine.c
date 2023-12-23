@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:56:44 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/21 20:17:11 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/23 02:01:00 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,24 @@ static void	*check_dead(void *arg)
 		if (philo->last_meal + data->time_to_die < get_time())
 		{
 			print_task(philo, "is dead");
-			break ;
+			sem_post(data->finished);
+			return (NULL);
 		}
 		if (data->wanted_meals != -1 && philo->meals >= data->wanted_meals)
-			break ;
+		{
+			sem_post(data->all_eat);
+			sem_post(data->death);
+			return (NULL);
+		}
 		sem_post(data->death);
 		usleep(10);
 	}
-	sem_post(data->finished);
 	return (NULL);
 }
 
 /************************* Routine for philos threads *************************/
 void	routine(t_philo *philo)
 {
-
 	if (philo->id % 2 == 0)
 		usleep(25000);
 	pthread_create(&philo->is_dead, NULL, check_dead, philo);
