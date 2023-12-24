@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 20:04:13 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/23 02:31:30 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/24 13:20:58 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	*wait_for_death(void *arg)
 	sem_wait(philo->data->finished);
 	while (i < philo->data->num_of_philos)
 	{
+		sem_post(philo->data->all_eat);
 		kill(philo[i].pid, SIGKILL);
 		i++;
 	}
@@ -57,7 +58,8 @@ int	main(int ac, char **av)
 {
 	t_data		data;
 	t_philo		*philo;
-	pthread_t	thread;
+	pthread_t	thread1;
+	pthread_t	thread2;
 
 	if (!check_args(ac, av))
 		return (-1);
@@ -71,12 +73,10 @@ int	main(int ac, char **av)
 	init_semaphores(&data);
 	init_processes(&data, philo);
 	if (data.wanted_meals != -1)
-	{
-		pthread_create(&thread, NULL, wait_all_ate, &data);
-		pthread_join(thread, NULL);
-	}
-	pthread_create(&thread, NULL, wait_for_death, philo);
-	pthread_join(thread, NULL);
+		pthread_create(&thread1, NULL, wait_all_ate, &data);
+	pthread_create(&thread2, NULL, wait_for_death, philo);
+	pthread_join(thread1, NULL);
+	pthread_join(thread2, NULL);
 	destroy_semaphores(&data, philo);
 	free(philo);
 	return (0);
