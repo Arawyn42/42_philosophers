@@ -6,7 +6,7 @@
 #    By: drenassi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/05 20:15:28 by drenassi          #+#    #+#              #
-#    Updated: 2023/12/12 22:54:19 by drenassi         ###   ########.fr        #
+#    Updated: 2023/12/26 19:03:02 by drenassi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -235,7 +235,7 @@ setup:
 			@$(call save_files_changed)
 
 ################################## NAME'S RULE #################################
-$(NAME):	${OBJS} ${OBJ_MAIN} ${MLX}
+$(NAME):	${OBJS} ${OBJ_MAIN}
 			@$(call display_progress_bar)
 			@$(call run_and_test,$(CC) $(CFLAGS) -I$(INCLUDE_PATH) -o $@ ${OBJS} ${OBJ_MAIN})
 			@printf "\33[2K\r\n"
