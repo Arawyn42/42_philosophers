@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:02:36 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/19 23:52:08 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/29 21:42:44 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ static int	p_eat3(t_philo *philo, t_data *data, int left, int right)
 		return (0);
 	}
 	print_task(philo, "is eating");
+	pthread_mutex_lock(&data->time);
 	philo->meals++;
+	pthread_mutex_unlock(&data->time);
 	wait_time(data, data->time_to_eat);
 	pthread_mutex_unlock(&data->fork[left]);
 	pthread_mutex_unlock(&data->fork[right]);

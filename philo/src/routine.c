@@ -6,7 +6,7 @@
 /*   By: drenassi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:56:44 by drenassi          #+#    #+#             */
-/*   Updated: 2023/12/19 23:53:10 by drenassi         ###   ########.fr       */
+/*   Updated: 2023/12/29 21:45:21 by drenassi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ static int	check_dead_2(t_data *data, t_philo *philo, int i)
 
 	pthread_mutex_lock(&data->time);
 	time_from_last_meal = get_time_from(philo[i].last_meal);
+	if (philo[i].meals >= data->wanted_meals && data->wanted_meals != -1)
+	{
+		pthread_mutex_unlock(&data->time);
+		return (0);
+	}
 	pthread_mutex_unlock(&data->time);
 	if (time_from_last_meal > data->time_to_die)
 	{
