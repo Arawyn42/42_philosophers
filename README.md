@@ -1,14 +1,20 @@
-# <div align="center">⚙️ philosophers (a [42](https://42perpignan.fr/) project) ⚙️</div>
+<div align="center">
+  <h1>⚙️ philosophers (a <a href="https://42perpignan.fr/">42</a> project) ⚙️</h1>
+  <img src="ressources/preview.gif" alt="Preview">
+  <p><b>Subject:</b> <a href="ressources/en.subject.pdf">fr.subject.pdf</a></p>
+</div>
+<div align="center">
+  <h2>✅ Grade</h2>
+  <img src="ressources/grade.png" alt="Grade">
+</div><br>
 
-## Grade
-![drenassi's 42 Philosophers Score](https://badge42.coday.fr/api/v2/clph33bao098101t6vnzqbe17/project/3440938)
-
-## Introduction
+## <div align="center">📄 Introduction</div>
 **philosophers** is a project about managing multiple threads in the same program. In this project, we learn how to use threads, how to make them waiting or using shared variables.
 
 Here, each thread is a philosopher, who has to eat to survive. When a philosopher can't eat soon enough, he dies, and the simulation stops.
+<br><br>
 
-## Rules
+## <div align="center">📒 Rules</div>
 - One or more philosophers sit at a round table. There is a large bowl of spaghetti in the middle of the table.
 - The philosophers alternatively **eat**, **think**, or **sleep**. While they are eating, they are not thinking nor sleeping; while thinking, they are not eating nor sleeping; and, of course, while sleeping, they are not eating nor thinking.
 - There are also forks on the table. There are **as many forks as philosophers**.
@@ -22,8 +28,9 @@ a philosopher dies** of starvation.
 - No need to say that philosophers should avoid dying!
 
 `Each philosopher is a thread, and each fork is a mutex. In the bonus part, rules are the same, but instead of threads and mutex, we must use processes and semaphores.`
+<br><br>
 
-## How to use ?
+## <div align="center">💻 Usage</div>
 ### Clone the repository
 ```bash
 git clone https://github.com/Arawyn42/42_philosophers
@@ -40,11 +47,9 @@ cd 42_philosophers/philo_bonus
 
 ### Compile the program
 ```bash
-make
+make && make clean
 ```
-```bash
-make clean
-```
+
 ### Launch the program
 **Base version:**
 ```bash
