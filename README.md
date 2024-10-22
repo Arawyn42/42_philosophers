@@ -1,7 +1,7 @@
 <div align="center">
   <h1>⚙️ philosophers (a <a href="https://42perpignan.fr/">42</a> project) ⚙️</h1>
   <img src="ressources/preview.gif" alt="Preview">
-  <p><b>Subject:</b> <a href="ressources/en.subject.pdf">fr.subject.pdf</a></p>
+  <p><b>Subject:</b> <a href="ressources/en.subject.pdf">en.subject.pdf</a></p>
 </div>
 <div align="center">
   <h2>✅ Grade</h2>
